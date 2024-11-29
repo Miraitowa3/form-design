@@ -3,6 +3,7 @@ import 'ant-design-vue/dist/reset.css'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
+console.log(createPinia,);
 
 import App from './App.vue'
 import router from './router'

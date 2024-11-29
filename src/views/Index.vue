@@ -11,7 +11,10 @@
                     'background-color': 'gray'
                 }"
                 breakpoint="md"
-            ></a-layout-sider>
+                style="background-color: white"
+            >
+                <CollapseContainer />
+            </a-layout-sider>
             <a-layout-content></a-layout-content>
             <a-layout-sider
                 :class="`right `"
@@ -21,11 +24,14 @@
                 width="270"
                 :zeroWidthTriggerStyle="{ 'margin-top': '-70px', 'background-color': 'gray' }"
                 breakpoint="lg"
+                style="background-color: white"
             ></a-layout-sider>
         </a-layout>
     </div>
 </template>
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import CollapseContainer from '../components/CollapseContainer/Index';
+</script>
 <style lang="scss" scoped>
 .form-design {
     height: 100vh;

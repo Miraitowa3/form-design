@@ -1,0 +1,13 @@
+.collapse-container {
+    .container__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 32px;
+        border-bottom: 1px solid #eee;
+        padding-top: 1.25rem;
+        padding-bottom: 1.25rem;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+}

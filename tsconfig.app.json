@@ -1,15 +1,23 @@
 {
-  "extends": "@vue/tsconfig/tsconfig.dom.json",
-  "include": ["env.d.ts", "src/**/*", "src/**/*.vue","src/**/*.ts","src/**/*.d.ts"],
-  "exclude": ["src/**/__tests__/*","node_modules","history"],
-  "compilerOptions": {
-    "jsx": "preserve",
-    "composite": true,
-    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
-    "types" :["pinia/dist/pinia.d.ts"],
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"]
+    // "extends": "@vue/tsconfig/tsconfig.dom.json",
+    "include": [
+        "src/**/*.ts",
+        "src/**/*.d.ts",
+        "src/**/*.tsx",
+        "src/**/*.vue",
+        "./auto-imports.d.ts",
+        "./components.d.ts",
+        "./env.d.ts"
+    ],
+    "exclude": ["node_modules"],
+    "compilerOptions": {
+        "jsx": "preserve",
+        "composite": true,
+        "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+
+        "baseUrl": ".",
+        "paths": {
+            "@/*": ["./src/*"]
+        }
     }
-  }
 }

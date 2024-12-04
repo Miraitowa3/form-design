@@ -13,7 +13,12 @@
                 breakpoint="md"
                 style="background-color: white"
             >
-                <CollapseContainer />
+                <CollapseContainer :title="'基础组件'">
+                    <CollapseItem :list="baseComponents" />
+                </CollapseContainer>
+                <CollapseContainer :title="'布局组件'">
+                    <CollapseItem :list="layoutComponents" />
+                </CollapseContainer>
             </a-layout-sider>
             <a-layout-content></a-layout-content>
             <a-layout-sider
@@ -31,6 +36,8 @@
 </template>
 <script setup lang="ts">
 import CollapseContainer from '../components/CollapseContainer/Index';
+import CollapseItem from '../components/CollapseItem/Index.vue';
+import { baseComponents, layoutComponents } from '../config/formItemConfig';
 </script>
 <style lang="scss" scoped>
 .form-design {

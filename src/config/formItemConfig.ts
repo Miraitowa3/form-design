@@ -1,4 +1,4 @@
-export const baseComponents: IVFormComponent[] = [
+export const baseComponents= [
   {
     component: 'InputCountDown',
     label: '倒计时输入',
@@ -302,6 +302,29 @@ export const baseComponents: IVFormComponent[] = [
     colProps: { span: 24 },
     componentProps: {
       slotName: 'slotName',
+    },
+  },
+];
+export const layoutComponents= [
+  {
+    field: '',
+    component: 'Grid',
+    label: '栅格布局',
+    icon: 'icon-grid',
+    componentProps: {},
+    columns: [
+      {
+        span: 12,
+        children: [],
+      },
+      {
+        span: 12,
+        children: [],
+      },
+    ],
+    colProps: { span: 24 },
+    options: {
+      gutter: 0,
     },
   },
 ];

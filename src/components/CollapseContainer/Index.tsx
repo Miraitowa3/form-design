@@ -1,35 +1,37 @@
 import s from './Index.module.scss';
-console.log(s,9999999);
+import { useHeight } from './hightTransition';
 
-// import AButton from 'ant-design-vue/es/button';
 export default defineComponent({
     name: 'CollapseContainers',
     props: {
         title: {
             type: String,
             default: ''
-        },
-        isOpen: {
-            type: Boolean,
-            default: false
         }
     },
-    setup() {
+    setup(props, { slots }) {
+        const isOpen = ref(false);
+        const openContainer = ref<HTMLDivElement>();
         const handleToggle = () => {
-            // props.isOpen = !props.isOpen;
+            isOpen.value = !isOpen.value;
+            console.log(openContainer.value, 333);
+
+            useHeight(openContainer.value as HTMLDivElement, isOpen.value);
         };
         return () => (
             <div class={s['collapse-container']}>
                 <div class={s['container-container__header']}>
-                    <span>基础组件</span>
-                    <div class="open">
+                    <span>{props.title}</span>
+                    <div class={[isOpen.value ? s.open : '', s['open-icon']]} onClick={handleToggle}>
                         <UpOutlined style="{ fontSize: '16px', color: '#08c' }" />
                     </div>
-
                 </div>
-                   <div class={s['open-container']}>
 
-                    </div>
+                <div ref={openContainer} class={s['open-container']}>
+                    {{
+                        default: () => slots && slots.default && slots.default()
+                    }}
+                </div>
             </div>
         );
     }

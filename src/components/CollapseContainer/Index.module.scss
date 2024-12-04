@@ -9,22 +9,16 @@
         padding-bottom: 1.25rem;
         padding-left: 0.5rem;
         padding-right: 0.5rem;
+        .open {
+            transform: rotateZ(180deg);
+        }
+        .open-icon {
+            transition: all 0.3s;
+        }
     }
     .open-container {
         padding: 8px 8px;
-        & > ul {
-            padding: 5px 5px;
-            li {
-                width: calc(50% - 6px);
-                height: 36px;
-                margin: 2.7px;
-                padding: 8px 12px;
-                transition: all 0.3s;
-                border: 1px solid #ccc;
-                border-radius: 3px;
-                line-height: 20px;
-                cursor: move;
-            }
-        }
+        overflow: hidden;
+        height: 0;
     }
 }

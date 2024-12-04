@@ -11,6 +11,7 @@ declare module 'vue' {
     ALayout: typeof import('ant-design-vue/es')['Layout']
     ALayoutContent: typeof import('ant-design-vue/es')['LayoutContent']
     ALayoutSider: typeof import('ant-design-vue/es')['LayoutSider']
+    Index: typeof import('./src/components/CollapseItem/Index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     UpOutlined: typeof import('@ant-design/icons-vue')['UpOutlined']

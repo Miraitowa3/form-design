@@ -5,7 +5,7 @@
                 :class="`left`"
                 collapsible
                 collapsedWidth="0"
-                width="270"
+                width="25%"
                 :zeroWidthTriggerStyle="{
                     'margin-top': '-70px',
                     'background-color': 'gray'
@@ -20,23 +20,28 @@
                     <CollapseItem :list="layoutComponents" />
                 </CollapseContainer>
             </a-layout-sider>
-            <a-layout-content></a-layout-content>
+            <a-layout-content><FormComponentPanel /></a-layout-content>
             <a-layout-sider
                 :class="`right `"
                 collapsible
                 :reverseArrow="true"
                 collapsedWidth="0"
-                width="270"
+                width="25%"
                 :zeroWidthTriggerStyle="{ 'margin-top': '-70px', 'background-color': 'gray' }"
                 breakpoint="lg"
                 style="background-color: white"
-            ></a-layout-sider>
+            >
+                <PropsPanel />
+            </a-layout-sider>
         </a-layout>
     </div>
 </template>
 <script setup lang="ts">
 import CollapseContainer from '../components/CollapseContainer/Index';
 import CollapseItem from '../components/CollapseItem/Index.vue';
+import FormComponentPanel from '../components/FormComponentPanel/Index.vue';
+import PropsPanel from '../components/PropsPanel/Index.vue';
+
 import { baseComponents, layoutComponents } from '../config/formItemConfig';
 </script>
 <style lang="scss" scoped>

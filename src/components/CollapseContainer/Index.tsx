@@ -1,6 +1,6 @@
 import s from './Index.module.scss';
 import { useHeight } from './hightTransition';
-
+import UpOutlined from '@ant-design/icons-vue/lib/icons/UpOutlined';
 export default defineComponent({
     name: 'CollapseContainers',
     props: {
@@ -14,8 +14,6 @@ export default defineComponent({
         const openContainer = ref<HTMLDivElement>();
         const handleToggle = () => {
             isOpen.value = !isOpen.value;
-            console.log(openContainer.value, 333);
-
             useHeight(openContainer.value as HTMLDivElement, isOpen.value);
         };
         return () => (

@@ -6,7 +6,6 @@
             :group="{ name: 'people', pull: 'clone', put: false }"
             :sort="false"
             draggable=".bs-box"
-            @end="onEnd"
             :clone="cloneComponent"
         >
             <li v-for="(item, index) in list" class="bs-box" :key="item.label + index">
@@ -19,11 +18,28 @@
 </template>
 <script lang="ts" setup>
 import { VueDraggable } from 'vue-draggable-plus';
-const props = defineProps<{
-    onEnd: (obj: any) => void;
-    cloneComponent: (origin: any) => void;
-}>();
+
 const list = defineModel<any>();
+
+function cloneComponent(origin: any) {
+    const clone = JSON.parse(JSON.stringify(origin));
+    // clone.formId = ++this.idGlobal;
+    // clone.span = formConf.span;
+    clone.renderKey = +new Date(); // 改变renderKey后可以实现强制更新组件
+    // if (!clone.layout) clone.layout = 'colFormItem';
+    // if (clone.layout === 'colFormItem') {
+    //     clone.vModel = `field${this.idGlobal}`;
+    //     clone.placeholder !== undefined && (clone.placeholder += clone.label);
+    //     tempActiveData = clone;
+    // } else if (clone.layout === 'rowFormItem') {
+    //     delete clone.label;
+    //     clone.componentName = `row${this.idGlobal}`;
+    //     clone.gutter = this.formConf.gutter;
+    //     tempActiveData = clone;
+    // }
+
+    return clone;
+}
 </script>
 <style scoped lang="scss">
 .collapse-item {

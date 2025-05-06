@@ -22,15 +22,15 @@ export default defineConfig({
         AutoImport({
             imports: ['vue', 'vue-router'],
         }),
-        Components({
-            include: [/\.vue$/, /\.vue\?vue/, /\.tsx$/], // 自动引入组件的文件
-            resolvers: [
-                AntDesignVueResolver({
-                    importStyle: false, //不单独导入样式，对样式进行全局引入
-                    resolveIcons: true
-                })
-            ]
-        })
+        // Components({
+        //     include: [/\.vue$/, /\.vue\?vue/, /\.tsx$/], // 自动引入组件的文件
+        //     resolvers: [
+        //         AntDesignVueResolver({
+        //             importStyle: false, //不单独导入样式，对样式进行全局引入
+        //             resolveIcons: true
+        //         })
+        //     ]
+        // })
     ],
     resolve: {
         alias: {

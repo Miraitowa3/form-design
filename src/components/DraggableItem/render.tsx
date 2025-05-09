@@ -50,6 +50,7 @@ const RenderItem = defineComponent({
 
     setup(props) {
         const {conf} = props
+
         return () => (listMap[conf.tag](conf))
     }
 

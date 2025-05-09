@@ -14,16 +14,16 @@
                 width="25%"
             >
                 <CollapseContainer :title="'输入型组件'">
-                    <CollapseItem v-model="inputComponents" />
+                    <CollapseItem v-model="inputComponents" :cloneComponent="cloneComponent" />
                 </CollapseContainer>
                 <CollapseContainer :title="'选择型组件'">
-                    <CollapseItem v-model="selectComponents" />
+                    <CollapseItem v-model="selectComponents" :cloneComponent="cloneComponent" />
                 </CollapseContainer>
                 <CollapseContainer :title="'布局组件'">
-                    <CollapseItem v-model="layoutComponents" />
+                    <CollapseItem v-model="layoutComponents" :cloneComponent="cloneComponent" />
                 </CollapseContainer>
             </a-layout-sider>
-            <a-layout-content>
+            <a-layout-content style="background-color: white">
                 <div class="form-component-panel">
                     <div class="user-setting"></div>
                     <div class="componets">
@@ -43,6 +43,7 @@
                                         :element="element"
                                         :form-conf="formConf"
                                         :index="index"
+                                        :activeItem="activeFormItem"
                                     />
                                 </VueDraggable>
                             </a-form>
@@ -71,32 +72,40 @@ import CollapseItem from '../components/CollapseItem/Index.vue';
 import PropsPanel from '../components/PropsPanel/Index.vue';
 import DraggableItem from '../components/DraggableItem/index';
 import { VueDraggable } from 'vue-draggable-plus';
-import { inputComponents, layoutComponents, selectComponents, formConf } from '../config/formItemConfig';
+import {
+    inputComponents,
+    layoutComponents,
+    selectComponents,
+    formConf as formConfs
+} from '../config/formItemConfig';
 const drawingList = ref<any[]>([]);
 const activeId = ref<string>();
-
+const tempActiveData = ref<any>();
+const idGlobal = ref(100);
+const formConf = ref(formConfs);
+const activeData = ref<any>();
 function cloneComponent(origin: any) {
     const clone = JSON.parse(JSON.stringify(origin));
-    clone.id = new Date().getTime();
-    console.log('🚀 -----------------------------------🚀');
-    console.log('🚀 ~ cloneComponent ~ clone:', clone);
-    console.log('🚀 -----------------------------------🚀');
-    // clone.formId = ++this.idGlobal;
-    // clone.span = formConf.span;
-    // clone.renderKey = +new Date(); // 改变renderKey后可以实现强制更新组件
-    // if (!clone.layout) clone.layout = 'colFormItem';
-    // if (clone.layout === 'colFormItem') {
-    //     clone.vModel = `field${this.idGlobal}`;
-    //     clone.placeholder !== undefined && (clone.placeholder += clone.label);
-    //     tempActiveData = clone;
-    // } else if (clone.layout === 'rowFormItem') {
-    //     delete clone.label;
-    //     clone.componentName = `row${this.idGlobal}`;
-    //     clone.gutter = this.formConf.gutter;
-    //     tempActiveData = clone;
-    // }
+    clone.formId = ++idGlobal.value;
+    clone.span = formConf.value.span;
+    clone.renderKey = +new Date(); // 改变renderKey后可以实现强制更新组件
+    if (!clone.layout) clone.layout = 'colFormItem';
+    if (clone.layout === 'colFormItem') {
+        clone.vModel = `field${idGlobal.value}`;
+        clone.placeholder !== undefined && (clone.placeholder += clone.label);
+        tempActiveData.value = clone;
+    } else if (clone.layout === 'rowFormItem') {
+        delete clone.label;
+        clone.componentName = `row${idGlobal.value}`;
+        clone.gutter = formConf.value.gutter;
+        tempActiveData.value = clone;
+    }
 
     return clone;
+}
+function activeFormItem(element: any) {
+    activeData.value = element;
+    activeId.value = element.formId;
 }
 </script>
 <style lang="scss" scoped>

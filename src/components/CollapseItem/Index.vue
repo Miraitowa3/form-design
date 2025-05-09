@@ -1,18 +1,17 @@
 <template>
     <div class="collapse-item">
         <VueDraggable
-            tag="ul"
             v-model="list"
             :group="{ name: 'people', pull: 'clone', put: false }"
             :sort="false"
-            draggable=".bs-box"
             :clone="cloneComponent"
+            class="draggable-list"
         >
-            <li v-for="(item, index) in list" class="bs-box" :key="item.label + index">
+            <div v-for="(item, index) in list" class="bs-box" :key="item.label + index">
                 <div class="component-item text-ellipsis">
                     {{ item.label }}
                 </div>
-            </li>
+            </div>
         </VueDraggable>
     </div>
 </template>
@@ -21,36 +20,20 @@ import { VueDraggable } from 'vue-draggable-plus';
 
 const list = defineModel<any>();
 
-function cloneComponent(origin: any) {
-    const clone = JSON.parse(JSON.stringify(origin));
-    // clone.formId = ++this.idGlobal;
-    // clone.span = formConf.span;
-    clone.renderKey = +new Date(); // 改变renderKey后可以实现强制更新组件
-    // if (!clone.layout) clone.layout = 'colFormItem';
-    // if (clone.layout === 'colFormItem') {
-    //     clone.vModel = `field${this.idGlobal}`;
-    //     clone.placeholder !== undefined && (clone.placeholder += clone.label);
-    //     tempActiveData = clone;
-    // } else if (clone.layout === 'rowFormItem') {
-    //     delete clone.label;
-    //     clone.componentName = `row${this.idGlobal}`;
-    //     clone.gutter = this.formConf.gutter;
-    //     tempActiveData = clone;
-    // }
-
-    return clone;
-}
+const props = defineProps<{
+    cloneComponent: (origin: any) => any;
+}>();
 </script>
 <style scoped lang="scss">
 .collapse-item {
-    ul {
+    .draggable-list {
         display: flex;
         flex-wrap: wrap;
         margin-bottom: 0;
         padding: 5px;
         list-style: none;
 
-        li {
+        .bs-box {
             width: calc(50% - 6px);
             height: 36px;
             margin: 2.7px;

@@ -1,0 +1,89 @@
+*,
+body,
+html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/* 拖拽列样式 */
+.sortable-ghost {
+    opacity: 0.8;
+    color: #fff !important;
+    background: #42b983 !important;
+    width: 100%;
+    height: 60px;
+
+    position: relative;
+    display: block;
+    overflow: hidden;
+    &::before {
+        content: ' ';
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        height: 3px;
+        background: rgb(89, 89, 223);
+        z-index: 2;
+    }
+}
+.active-from-item {
+    $selectedColor: #f6f7ff;
+    $lighterBlue: #409eff;
+
+    & > .ant-form-item {
+        background: $selectedColor;
+        border-radius: 6px;
+    }
+
+    & > .component-name {
+        color: $lighterBlue;
+    }
+}
+.drawing-item {
+    position: relative;
+    cursor: move;
+    &.unfocus-bordered:not(.activeFromItem) > div:first-child {
+        border: 1px dashed #ccc;
+    }
+    .el-form-item {
+        padding: 12px 10px;
+    }
+}
+.drawing-row-item {
+    $selectedColor: #f6f7ff;
+    $lighterBlue: #409eff;
+
+    position: relative;
+    cursor: move;
+    box-sizing: border-box;
+    border: 1px dashed #ccc;
+    border-radius: 3px;
+    padding: 0 2px;
+    margin-bottom: 15px;
+    .drawing-row-item {
+        margin-bottom: 2px;
+    }
+    .ant-col {
+        margin-top: 22px;
+    }
+    .ant-form-item {
+        margin-bottom: 0;
+    }
+    .drag-wrapper {
+        min-height: 80px;
+        width: 100%;
+    }
+    &.active-from-item {
+        border: 1px dashed $lighterBlue;
+    }
+    .component-name {
+        position: absolute;
+        top: 0;
+        left: 0;
+        font-size: 12px;
+        color: #bbb;
+        display: inline-block;
+        padding: 0 6px;
+    }
+}

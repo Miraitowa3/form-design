@@ -1,4 +1,4 @@
-import './assets/main.css'
+import './assets/main.scss'
 import 'ant-design-vue/dist/reset.css'
 import Antd from 'ant-design-vue';
 
